@@ -1,0 +1,15 @@
+server:
+  port: 7002
+
+eureka:
+  instance:
+    hostname: euk2.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://euk1.com:7001/eureka/
+  server:
+    ## 关闭自我保护机制,保证不可用服务及时被剔除
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 2000
