@@ -1,0 +1,43 @@
+server:
+  port: 8012
+magic-api:
+  #配置web页面入口
+  web: /magic/web
+  resource:
+    type: database # 配置存储在数据库
+    table-name: magic_api_file # 数据库中的表名
+    datasource: master #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
+    prefix: /test-magic-api # key前缀
+    readonly: false # 是否是只读模式
+  backup:
+    # 是否开启备份
+    enable: true
+    datasource: master #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
+    # 使用数据库存储备份时的表名
+    table-name: magic_api_backup
+  response: |- #配置JSON格式，格式为magic-script中的表达式
+    {
+      code: code,
+      message: message,
+      data
+    }
+  sql-column-case: camel #启用驼峰命名转换
+  throw-exception: true # 执行出错时，异常将抛出处理
+  instance-id: 101
+
+#配置多数据源
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          url: jdbc:mysql://49.232.134.58:3306/magic?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+        business:
+          url: jdbc:mysql://49.232.134.58:3306/business?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
