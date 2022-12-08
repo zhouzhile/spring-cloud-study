@@ -10,4 +10,8 @@ package com.zzl.study.magic.service;
 public interface PersonService {
 
     String say();
+
+    default void doSomeThing(){
+        System.out.println("AAAAAAAAAAAA");
+    }
 }
