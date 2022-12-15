@@ -28,6 +28,9 @@ magic-api:
     shutdown:
       await-termination: false #关闭时是否等待任务执行完毕，默认为false
       await-termination-period: 10s #关闭时最多等待任务执行完毕的时间
+  security:
+    username: admin
+    password: 123456
   sql-column-case: camel #启用驼峰命名转换
   throw-exception: true # 执行出错时，异常将抛出处理
   instance-id: 101

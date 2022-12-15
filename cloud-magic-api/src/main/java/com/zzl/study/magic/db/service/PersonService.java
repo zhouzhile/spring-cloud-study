@@ -1,4 +1,6 @@
-package com.zzl.study.magic.service;
+package com.zzl.study.magic.db.service;
+
+import com.zzl.study.magic.callback.MyCallBack;
 
 /**
  * @ClassName PersonService
@@ -14,4 +16,6 @@ public interface PersonService {
     default void doSomeThing(){
         System.out.println("AAAAAAAAAAAA");
     }
+
+    void handleByType(Integer type, MyCallBack myCallBack);
 }
