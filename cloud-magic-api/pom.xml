@@ -132,6 +132,29 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- 在打包时，将配置文件放到jar包外面-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.zzl.study.magic.MagicApiApplication</mainClass>
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <!--在Class-Path下添加配置文件的路径-->
+                            <Class-Path>..</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <!-- 配置文件不打入jar包 -->
+                    <excludes>
+                        <exclude>application.yml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

@@ -4,11 +4,13 @@ magic-api:
   #配置web页面入口
   web: /magic/web
   resource:
-    type: database # 配置存储在数据库
-    table-name: magic_api_file # 数据库中的表名
-    datasource: master #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
-    prefix: /test-magic-api # key前缀
-    readonly: false # 是否是只读模式
+    type: file # 文件存储，保存到指定位置，方便我们进行版本控制
+    location: E:/code/Study/spring-cloud-study/cloud-magic-api/src/magic-api/data
+#    type: database # 配置存储在数据库
+#    table-name: magic_api_file # 数据库中的表名
+#    datasource: master #指定数据源（单数据源时无需配置，多数据源时默认使用主数据源，如果存在其他数据源中需要指定。）
+#    prefix: /test-magic-api # key前缀
+#    readonly: false # 是否是只读模式
   backup:
     # 是否开启备份
     enable: true
