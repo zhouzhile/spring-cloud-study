@@ -13,7 +13,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * @ClassName MyClient
- * @Desc Netty客户端
+ * @Desc Netty客户端，实现客户端与服务端的通信
  * @Author Lenovo
  * @Date 2022/12/22 14:22
  * @Version 1.0

@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice;
+package com.zzl.study.nettyService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

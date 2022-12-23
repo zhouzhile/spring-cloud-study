@@ -1,5 +1,6 @@
 package com.zzl.study.nettyService.review.protocal;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -20,6 +21,13 @@ public class MyProtocal {
      * 信息体
      */
     byte[] bytes;
+
+    public MyProtocal(){}
+
+    public MyProtocal(String message){
+        this.len = message.getBytes(StandardCharsets.UTF_8).length;
+        this.bytes = message.getBytes(StandardCharsets.UTF_8);
+    }
 
     public int getLen() {
         return len;
