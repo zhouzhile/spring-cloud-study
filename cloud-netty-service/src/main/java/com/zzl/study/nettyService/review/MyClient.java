@@ -1,6 +1,8 @@
 package com.zzl.study.nettyService.review;
 
 import com.zzl.study.nettyService.review.handle.client.ClientSimpleHander;
+import com.zzl.study.nettyService.review.handle.client.MyMsgToByteEncoder;
+import com.zzl.study.nettyService.review.handle.client.MyProtocalClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -28,7 +30,9 @@ public class MyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new ClientSimpleHander()); // 最简单的处理器
+//                            ch.pipeline().addLast(new ClientSimpleHander()); // 最简单的处理器
+                            ch.pipeline().addLast(new MyMsgToByteEncoder());
+                            ch.pipeline().addLast(new MyProtocalClientHandler());
                         }
                     });
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 9000).sync();

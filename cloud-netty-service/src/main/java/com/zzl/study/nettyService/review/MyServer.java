@@ -1,5 +1,7 @@
 package com.zzl.study.nettyService.review;
 
+import com.zzl.study.nettyService.review.handle.server.MyByteToMsgDecoder;
+import com.zzl.study.nettyService.review.handle.server.MyProtocalServerHandler;
 import com.zzl.study.nettyService.review.handle.server.ServerSimpleHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -37,7 +39,9 @@ public class MyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // 给WorkerGroup中的NioEventLoop对应的管道设置处理器，也就是给PipeLine中设置ChannelHandler
-                            ch.pipeline().addLast(new ServerSimpleHandler());
+//                            ch.pipeline().addLast(new ServerSimpleHandler());
+                            ch.pipeline().addLast(new MyByteToMsgDecoder());
+                            ch.pipeline().addLast(new MyProtocalServerHandler());
                         }
                     });
             // 绑定端口，并启动
