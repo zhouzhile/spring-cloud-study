@@ -1,7 +1,7 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
-import com.zzl.study.cloudnettyservice.code.pojo.User;
-import com.zzl.study.cloudnettyservice.code.util.ProtostuffUtil;
+import com.zzl.study.nettyService.code.pojo.User;
+import com.zzl.study.nettyService.code.util.ProtostuffUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

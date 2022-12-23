@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -8,6 +8,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -29,8 +30,10 @@ public class MyClient {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new StringDecoder());
-                            pipeline.addLast(new StringEncoder());
+//                            pipeline.addLast(new StringDecoder());
+//                            pipeline.addLast(new StringEncoder());
+                            pipeline.addLast(new MyMessageDecoder());
+                            pipeline.addLast(new MyMessageEncoder());
                             pipeline.addLast(new MyClientIdleHadler());
                         }
                     });
@@ -39,8 +42,13 @@ public class MyClient {
             new Thread(()->{
                 while (channel.isActive()){
                     try {
-                        Thread.sleep(5*1000);
-                        channel.writeAndFlush("Heartbeat pachage");
+                        Thread.sleep(50*1000);
+                        System.out.println("客户端发送心跳包");
+                        Message message = new Message();
+                        String msg = "Heartbeat pachage";
+                        message.setLen(msg.getBytes(StandardCharsets.UTF_8).length);
+                        message.setBytes(msg.getBytes(StandardCharsets.UTF_8));
+                        channel.writeAndFlush(message);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -49,7 +57,10 @@ public class MyClient {
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNextLine()){
                 String msg = scanner.nextLine();
-                channel.writeAndFlush(msg);
+                Message message = new Message();
+                message.setLen(msg.getBytes(StandardCharsets.UTF_8).length);
+                message.setBytes(msg.getBytes(StandardCharsets.UTF_8));
+                channel.writeAndFlush(message);
             }
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {

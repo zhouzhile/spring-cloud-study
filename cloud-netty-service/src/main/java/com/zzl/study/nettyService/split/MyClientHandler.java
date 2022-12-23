@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

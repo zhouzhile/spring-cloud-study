@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
 import java.util.Arrays;
 

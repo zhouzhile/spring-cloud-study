@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -30,8 +30,10 @@ public class MyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new StringEncoder());
-                            ch.pipeline().addLast(new StringDecoder());
+//                            ch.pipeline().addLast(new StringEncoder());
+//                            ch.pipeline().addLast(new StringDecoder());
+                            ch.pipeline().addLast(new MyMessageEncoder());
+                            ch.pipeline().addLast(new MyMessageDecoder());
                             ch.pipeline().addLast(new IdleStateHandler(10,0,0));
                             ch.pipeline().addLast(new MyServerIdleHandler());
                         }

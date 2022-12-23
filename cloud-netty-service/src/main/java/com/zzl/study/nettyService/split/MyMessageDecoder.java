@@ -1,4 +1,4 @@
-package com.zzl.study.cloudnettyservice.split;
+package com.zzl.study.nettyService.split;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -19,6 +19,7 @@ public class MyMessageDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+       System.out.println("解码");
         // 因为Message中len为整形，占4个字节，所以只要这里大于4，就表示有数据
         if (in.readableBytes() >= 4){
             if (length == 0){
